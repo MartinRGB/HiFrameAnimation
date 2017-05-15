@@ -18,6 +18,8 @@ public class FrameAnimationView extends FrameSurfaceView {
     private long mStart;
     private long mDuration;
     private int mCurRepeats;
+    public int mControlFrame = 10;
+    public boolean isControl = false;
 
     private AtomicBoolean mIsAnimating = new AtomicBoolean(false);
 
@@ -187,7 +189,15 @@ public class FrameAnimationView extends FrameSurfaceView {
             }
         }
         mCurFrame = nextFrame;
-        drawNext(canvas, nextFrame, curTime);
+
+        if(isControl){
+
+            drawNext(canvas, mControlFrame, curTime);
+        }
+        else {
+
+            drawNext(canvas, nextFrame, curTime);
+        }
     }
 
     /**
@@ -195,7 +205,7 @@ public class FrameAnimationView extends FrameSurfaceView {
      * @param nextFrame
      * @param start     当前帧开始绘制的时间
      */
-    private void drawNext(Canvas canvas, int nextFrame, long start) {
+    public void drawNext(Canvas canvas, int nextFrame, long start) {
         long frameDuration = 0;
         FrameDrawable frameDrawable = mFrameDrawables.get(nextFrame);
         if (null != frameDrawable) {
@@ -213,4 +223,5 @@ public class FrameAnimationView extends FrameSurfaceView {
             }
         }
     }
+
 }

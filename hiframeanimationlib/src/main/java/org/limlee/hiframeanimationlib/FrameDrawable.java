@@ -39,4 +39,5 @@ final public class FrameDrawable {
         }
         return frameBitmap;
     }
+
 }
