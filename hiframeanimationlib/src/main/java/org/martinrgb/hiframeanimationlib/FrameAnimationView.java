@@ -1,4 +1,4 @@
-package org.limlee.hiframeanimationlib;
+package org.martinrgb.hiframeanimationlib;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -18,7 +18,7 @@ public class FrameAnimationView extends FrameSurfaceView {
     private long mStart;
     private long mDuration;
     private int mCurRepeats;
-    public int mControlFrame = 10;
+    public int mControlFrame = 0;
     public boolean isControl = false;
 
     private AtomicBoolean mIsAnimating = new AtomicBoolean(false);

@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/firstscreen"
+    android:background="#000"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <org.limlee.hiframeanimationlib.FrameAnimationView
+    <org.martinrgb.hiframeanimationlib.FrameAnimationView
         android:id="@+id/frame_animation"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/firstscreen"
+        android:alpha = "1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_marginLeft="42.5px"
+            android:layout_marginTop="90.3px"
+            android:layout_width="388.2px"
+            android:layout_height="225.9px"
+            android:src="@drawable/time"
+            android:id="@+id/timeLabel" />
+
+        <ImageView
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="1890px"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:src="@drawable/left"
+            android:id="@+id/leftLabel" />
+
+        <ImageView
+            android:layout_marginLeft="459px"
+            android:layout_marginTop="1900px"
+            android:layout_width="163.2px"
+            android:layout_height="40.9px"
+            android:src="@drawable/middle"
+            android:id="@+id/middleLabel" />
+
+        <ImageView
+            android:layout_marginLeft="993px"
+            android:layout_marginTop="1896px"
+            android:layout_width="58px"
+            android:layout_height="52px"
+            android:src="@drawable/right"
+            android:id="@+id/rightLabel" />
+
+        <ImageView
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="1080px"
+            android:layout_height="60px"
+            android:src="@drawable/status"
+            android:id="@+id/status" />
+
+        <!--1.-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:alpha="1."
+            android:id="@+id/blackMask" />
+
+        <org.martinrgb.interpolator.InterpolatorConfigurationView
+            android:id="@+id/interpolator_configurator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:visibility="invisible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+        </org.martinrgb.interpolator.InterpolatorConfigurationView>
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

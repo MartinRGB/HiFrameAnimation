@@ -1,4 +1,4 @@
-package org.limlee.hiframeanimationlib;
+package org.martinrgb.hiframeanimationlib;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

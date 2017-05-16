@@ -1,4 +1,4 @@
-package org.limlee.hiframeanimationlib;
+package org.martinrgb.hiframeanimationlib;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

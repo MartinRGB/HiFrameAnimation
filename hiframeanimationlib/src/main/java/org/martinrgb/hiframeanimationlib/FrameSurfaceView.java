@@ -1,4 +1,4 @@
-package org.limlee.hiframeanimationlib;
+package org.martinrgb.hiframeanimationlib;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -53,7 +53,7 @@ abstract class FrameSurfaceView extends SurfaceView {
     private void init() {
         if (!isInEditMode()) {
             setZOrderMediaOverlay(true);
-            setZOrderOnTop(true);
+            setZOrderOnTop(false);
         }
         setWillNotCacheDrawing(true);
         setDrawingCacheEnabled(false);

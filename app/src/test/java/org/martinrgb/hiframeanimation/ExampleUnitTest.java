@@ -1,4 +1,4 @@
-package org.limlee.hiframeanimation;
+package org.martinrgb.hiframeanimation;
 
 import org.junit.Test;
 

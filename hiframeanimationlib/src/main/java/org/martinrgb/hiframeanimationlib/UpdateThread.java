@@ -1,4 +1,4 @@
-package org.limlee.hiframeanimationlib;
+package org.martinrgb.hiframeanimationlib;
 
 public class UpdateThread extends Thread {
     volatile boolean mIsQuited;

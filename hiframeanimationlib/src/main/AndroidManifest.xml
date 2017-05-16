@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.limlee.hiframeanimationlib">
+          package="org.martinrgb.hiframeanimationlib">
 
     <application
         android:allowBackup="true"
