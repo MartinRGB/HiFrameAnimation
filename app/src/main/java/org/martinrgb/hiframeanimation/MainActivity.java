@@ -64,8 +64,8 @@ public class MainActivity extends AutoLayoutActivity {
 
     //##################### 序列帧处理 ######################
     private static final String FRAME_NAME = "trans";
-    private boolean userControl = false;
-    private boolean isOneShot = true;
+    private boolean userControl = true;
+    private boolean isOneShot = false;
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -119,7 +119,7 @@ public class MainActivity extends AutoLayoutActivity {
 
                 @Override
                 public void onFrameEnd() {
-                    mFrameAnimationView.mControlFrame = 293;
+                    //mFrameAnimationView.mControlFrame = 293;
                     Log.d(TAG, "帧动画播放结束！");
                 }
             });
