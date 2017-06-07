@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/MartinRGB/.android/build-cache/773a429e99a0c09d1287068f8b9608f727050390/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/MartinRGB/Desktop/15.GLFrameWallpaper/app/build/intermediates/pre-dexed/debug/classes_6a30cb1358e527d702cbfb33df994f3c3989133c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/MartinRGB/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/MartinRGB/Desktop/15.GLFrameWallpaper/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_7ab4272043837135d0a84f8512bcb1d55d97abe0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/MartinRGB/.android/build-cache/a073ef19465c5a035632dcb5c5f769777ca7707d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/MartinRGB/Desktop/15.GLFrameWallpaper/app/build/intermediates/pre-dexed/debug/classes_b1e9dfe26a298a0a5d21eb69410f3399835866fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/MartinRGB/.android/build-cache/e6d42b7fc6b401f52de26e351ad4033fe9f56748/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/MartinRGB/Desktop/15.GLFrameWallpaper/app/build/intermediates/pre-dexed/debug/classes_833f96d5b4c836a35de9b01c26de83ededa068e8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/MartinRGB/.android/build-cache/eb8d7e459373ebe3b5cee07a0bbb585ea967cf4c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/MartinRGB/Desktop/15.GLFrameWallpaper/app/build/intermediates/pre-dexed/debug/classes_f5029b493cbf9b7ad41fda77abb203fac368c13a.jar" />
+    </item>
+
+</items>
