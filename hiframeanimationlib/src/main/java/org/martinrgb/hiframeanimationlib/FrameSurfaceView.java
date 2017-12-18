@@ -88,6 +88,10 @@ abstract class FrameSurfaceView extends SurfaceView {
         stopUpdate();
     }
 
+    public synchronized void pause() {
+        pauseUpdate();
+    }
+
     /**
      * 是否当前绘制线程在跑
      *
@@ -145,6 +149,16 @@ abstract class FrameSurfaceView extends SurfaceView {
             }
         }
         return SystemClock.uptimeMillis() - startTime;
+    }
+
+    protected void pauseUpdate() {
+        mIsUpdateStarted = false;
+        if (null != mUpdateThread) {
+            UpdateThread updateThread = mUpdateThread;
+            mUpdateThread = null;
+            updateThread.quit();
+//            updateThread.interrupt();
+        }
     }
 
     protected void stopUpdate() {

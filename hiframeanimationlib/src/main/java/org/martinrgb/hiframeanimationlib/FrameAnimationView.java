@@ -19,7 +19,7 @@ public class FrameAnimationView extends FrameSurfaceView {
     private long mDuration;
     private int mCurRepeats;
     public int mControlFrame = 0;
-    public boolean isControl = false;
+    public boolean mIsControl = false;
 
     private AtomicBoolean mIsAnimating = new AtomicBoolean(false);
 
@@ -37,6 +37,10 @@ public class FrameAnimationView extends FrameSurfaceView {
          * 如果是oneShot的时候会回调，否则只用调用stop的适合才会回调
          */
         void onFrameEnd();
+
+        void onFrameUpdate(int currentFrame);
+
+        void onFramePause();
 
     }
 
@@ -57,6 +61,12 @@ public class FrameAnimationView extends FrameSurfaceView {
     public void setOneShot(boolean oneShot) {
         if (!isRunning()) {
             mOneShot = oneShot;
+        }
+    }
+
+    public void setIsControl(boolean isControl) {
+        if (!isRunning()) {
+            mIsControl = isControl;
         }
     }
 
@@ -100,6 +110,19 @@ public class FrameAnimationView extends FrameSurfaceView {
         }
     }
 
+    private void callOnFrameUpdate(int currentFrame) {
+        if (null != mOnFrameListener) {
+            mOnFrameListener.onFrameUpdate(currentFrame);
+        }
+    }
+
+
+    private void callOnFramePause() {
+        if (null != mOnFrameListener) {
+            mOnFrameListener.onFramePause();
+        }
+    }
+
     /**
      * 是否在播放帧动画
      *
@@ -140,6 +163,15 @@ public class FrameAnimationView extends FrameSurfaceView {
         super.stopUpdate();
     }
 
+    @Override
+    protected void pauseUpdate() {
+        if (mIsAnimating.get()) {
+            mIsAnimating.set(false);
+            callOnFramePause();
+        }
+        super.pauseUpdate();
+    }
+
     /**
      * 绘制的逻辑
      *
@@ -150,10 +182,10 @@ public class FrameAnimationView extends FrameSurfaceView {
         final int numFrames = mFrameDrawables.size();
         final int lastFrame = numFrames - 1;
         final long curTime = SystemClock.uptimeMillis();
-        if (mStart != 0
-                && curTime - mStart >= mDuration) {
-            if (mOneShot
-                    && mIsAnimating.get()) {
+
+        // End
+        if (mStart != 0 && curTime - mStart >= mDuration) {
+            if (mOneShot && mIsAnimating.get()) {
                 mIsAnimating.set(false);
                 post(new Runnable() {
                     @Override
@@ -165,17 +197,26 @@ public class FrameAnimationView extends FrameSurfaceView {
                 mCurRepeats = 0;
             }
         }
+
+        // Loop
         int nextFrame = mCurFrame + 1;
         if (mOneShot && nextFrame > lastFrame) {
             nextFrame = lastFrame;
         }
         if (!mOneShot && nextFrame >= numFrames) {
             nextFrame = lastFrame;
-            if (mStart != 0
-                    && curTime - mStart >= mDuration) {
+            if (mStart != 0 && curTime - mStart >= mDuration) {
                 nextFrame = 0;
             }
         }
+
+
+
+
+
+        callOnFrameUpdate(mCurFrame+1);
+
+        // Start
         if (nextFrame == 0) { //第一帧的时候开始记录时间
             mIsAnimating.set(true);
             mStart = curTime;
@@ -190,7 +231,7 @@ public class FrameAnimationView extends FrameSurfaceView {
         }
         mCurFrame = nextFrame;
 
-        if(isControl){
+        if(mIsControl){
 
             drawNext(canvas, mControlFrame, curTime);
         }
@@ -214,7 +255,7 @@ public class FrameAnimationView extends FrameSurfaceView {
             frameDrawable.draw(canvas, start);
         }
         final long cost = SystemClock.uptimeMillis() - start;
-        Log.d(TAG, "frame cost :" + cost);
+        Log.d(TAG, "Updating,frame cost :" + cost);
         if (frameDuration > cost) {
             try {
                 Thread.sleep(frameDuration - cost);

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -64,8 +65,13 @@ public class MainActivity extends AutoLayoutActivity {
 
     //##################### 序列帧处理 ######################
     private static final String FRAME_NAME = "trans";
-    private boolean userControl = true;
-    private boolean isOneShot = false;
+
+    // Test User Control Frame Animation Play
+//    private boolean isControl = true;
+//    private boolean isOneShot = false;
+    // Test Play-pause Interfcae
+    private boolean isControl = false;
+    private boolean isOneShot = true;
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -118,9 +124,24 @@ public class MainActivity extends AutoLayoutActivity {
                 }
 
                 @Override
+                public void onFrameUpdate(int currentFrame) {
+                    //mFrameAnimationView.mControlFrame = 293;
+
+                    if(currentFrame == 59 && !isControl){
+                        Log.d(TAG, "该停！");
+
+                    }
+                }
+
+                @Override
                 public void onFrameEnd() {
                     //mFrameAnimationView.mControlFrame = 293;
                     Log.d(TAG, "帧动画播放结束！");
+                }
+
+                @Override
+                public void onFramePause() {
+                    //mFrameAnimationView.mControlFrame = 293;
                 }
             });
 
@@ -130,14 +151,13 @@ public class MainActivity extends AutoLayoutActivity {
                 mFrameAnimationView.setOneShot(false);
             }
 
-            if(userControl){
+            if(isControl){
 
-                mFrameAnimationView.isControl = true;
+                mFrameAnimationView.setIsControl(true);
             }
             else {
-                mFrameAnimationView.isControl = false;
+                mFrameAnimationView.setIsControl(false);
             }
-
 
 
         }
@@ -335,6 +355,19 @@ public class MainActivity extends AutoLayoutActivity {
 
         mInterpolatorConfiguratorView.refreshInterpolatorConfigurations();
         mInterpolatorConfiguratorView.bringToFront();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            mFrameAnimationView.pause();
+        }
+
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)){
+            mFrameAnimationView.start();
+        }
+
+        return true;
     }
 
 }
