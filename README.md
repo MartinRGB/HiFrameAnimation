@@ -5,6 +5,7 @@ forked from [hidaron/HiFrameAnimation
 
 测试了「60FPS 全屏序列帧播放」 | 「手势控制 293 张序列帧」功能
 
+![gif](https://github.com/MartinRGB/HiFrameAnimation/blob/master/preview.gif)
 
 ### 1.添加帧动画视图布局
 
