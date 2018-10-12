@@ -80,6 +80,12 @@ abstract class FrameSurfaceView extends SurfaceView {
         });
     }
 
+    public void setFPS(int FPS) {
+        if (!isRunning()) {
+            mFrameUpdateRate = (int)Math.floor(1000/FPS);
+        }
+    }
+
     public synchronized void start() {
         startUpdate();
     }

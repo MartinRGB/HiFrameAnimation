@@ -13,13 +13,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class FrameAnimationView extends FrameSurfaceView {
     private static final String TAG = FrameAnimationView.class.getSimpleName();
     private int mCurFrame = -1;
-    private boolean mOneShot;
+
 
     private long mStart;
     private long mDuration;
     private int mCurRepeats;
     public int mControlFrame = 0;
-    public boolean mIsControl = false;
+    private boolean mIsControl = false;
+    private boolean mIsRepeat = false;
 
     private AtomicBoolean mIsAnimating = new AtomicBoolean(false);
 
@@ -56,11 +57,11 @@ public class FrameAnimationView extends FrameSurfaceView {
     /**
      * 是否播放一次，否则就循环播放
      *
-     * @param oneShot
+     * @param repeat
      */
-    public void setOneShot(boolean oneShot) {
+    public void setRepeat(boolean repeat) {
         if (!isRunning()) {
-            mOneShot = oneShot;
+            mIsRepeat = repeat;
         }
     }
 
@@ -185,7 +186,7 @@ public class FrameAnimationView extends FrameSurfaceView {
 
         // End
         if (mStart != 0 && curTime - mStart >= mDuration) {
-            if (mOneShot && mIsAnimating.get()) {
+            if (!mIsRepeat && mIsAnimating.get()) {
                 mIsAnimating.set(false);
                 post(new Runnable() {
                     @Override
@@ -200,10 +201,10 @@ public class FrameAnimationView extends FrameSurfaceView {
 
         // Loop
         int nextFrame = mCurFrame + 1;
-        if (mOneShot && nextFrame > lastFrame) {
+        if (!mIsRepeat && nextFrame > lastFrame) {
             nextFrame = lastFrame;
         }
-        if (!mOneShot && nextFrame >= numFrames) {
+        if (mIsRepeat && nextFrame >= numFrames) {
             nextFrame = lastFrame;
             if (mStart != 0 && curTime - mStart >= mDuration) {
                 nextFrame = 0;
@@ -255,7 +256,7 @@ public class FrameAnimationView extends FrameSurfaceView {
             frameDrawable.draw(canvas, start);
         }
         final long cost = SystemClock.uptimeMillis() - start;
-        Log.d(TAG, "Updating,frame cost :" + cost);
+        //Log.d(TAG, "Updating,frame cost :" + cost);
         if (frameDuration > cost) {
             try {
                 Thread.sleep(frameDuration - cost);

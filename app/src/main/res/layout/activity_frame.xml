@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/firstscreen"
+        android:alpha = "1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <org.martinrgb.hiframeanimationlib.FrameAnimationView
+            android:id="@+id/frame_animation"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/gesture_detect"
+            android:alpha="0"
+            android:translationZ="1000dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorAccent"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
