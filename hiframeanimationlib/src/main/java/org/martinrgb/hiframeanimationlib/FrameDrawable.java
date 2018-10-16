@@ -12,7 +12,9 @@ final public class FrameDrawable {
     private String mDrawableResPath;
     private Matrix mMatrix;
     private Paint mPaint;
+    private boolean mMiXAlpha = false;
 
+    int mixAlpha = 255;
     float mX;
     float mY;
     float mScale = 1.0f;
@@ -26,6 +28,20 @@ final public class FrameDrawable {
         mPaint = new Paint();
     }
 
+    public void setMixAlpha(boolean boo){
+        mMiXAlpha = boo;
+        if (boo == true){
+            mixAlpha = 122;
+        }
+        else{
+            mixAlpha = 255;
+        }
+    }
+
+    public boolean ismMiXAlpha() {
+        return mMiXAlpha;
+    }
+
     public Bitmap draw(Canvas canvas, long start) {
         //这里是从assets中获取bitmap，当然也可以从sdcard中获取，这样就可以热更了帧动画了
         final Bitmap frameBitmap = Utils.loadBitmap(mDrawableResPath);
@@ -34,7 +50,7 @@ final public class FrameDrawable {
             final float scaleY = (float) canvas.getHeight() / frameBitmap.getHeight();
             mMatrix.setTranslate(mX, mY);
             mMatrix.preScale(scaleX * mScale, scaleY * mScale, 0, 0);
-            mPaint.setAlpha((int) (mAlpha * 255));
+            mPaint.setAlpha((int) (mAlpha * mixAlpha));
             canvas.drawBitmap(frameBitmap, mMatrix, mPaint);
         }
         return frameBitmap;

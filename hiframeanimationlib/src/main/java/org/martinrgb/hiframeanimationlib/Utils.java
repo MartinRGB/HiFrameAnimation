@@ -35,7 +35,7 @@ public class Utils {
             bufferedSource = Okio.buffer(Okio.source(frameInputStream));
             byte[] imageBytes = bufferedSource.readByteArray();
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 1;
+            options.inSampleSize = 2;
             if(isReusableBitmap) {
                 options.inJustDecodeBounds = true;
                 BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length, options);
@@ -52,13 +52,48 @@ public class Utils {
             if (null != bufferedSource) {
                 try {
                     bufferedSource.close();
+                    //loadPrevBitmap(drawableResPath);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+
         return frameBitmap;
     }
+
+//    public static Bitmap loadPrevBitmap(String drawableResPath){
+//        Bitmap frameBitmap = null;
+//        BufferedSource bufferedSource = null;
+//        try {
+//            final InputStream frameInputStream = HolderApplication.getInstance().getAssets().open(drawableResPath);
+//            bufferedSource = Okio.buffer(Okio.source(frameInputStream));
+//            byte[] imageBytes = bufferedSource.readByteArray();
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inSampleSize = 4;
+//            if(isReusableBitmap) {
+//                options.inJustDecodeBounds = true;
+//                BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length, options);
+//                options.inJustDecodeBounds = false;
+//                addInBitmapOptions(options);
+//            }
+//            frameBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length, options);
+//            if (isReusableBitmap) {
+//                reuseBitmap(frameBitmap);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (null != bufferedSource) {
+//                try {
+//                    bufferedSource.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        return frameBitmap;
+//    }
 
     /**
      * 是否要重用该bitmap，如果发现bitmap缓存池里没有可复用的bitmap
@@ -148,7 +183,7 @@ public class Utils {
         }
         return bitmapItem.getWidth() == options.outWidth
                 && bitmapItem.getHeight() == options.outHeight
-                && options.inSampleSize == 1;
+                && options.inSampleSize == 2;
     }
 
     private static int getBytesPerPixel(Bitmap.Config config) {

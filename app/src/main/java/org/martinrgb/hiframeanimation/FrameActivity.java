@@ -96,6 +96,7 @@ public class FrameActivity extends AutoLayoutActivity {
             List<FrameDrawable> frameDrawables = new ArrayList<>();
             for (String framePath : frameList) {
                 FrameDrawable frameDrawable = new FrameDrawable(FRAME_NAME + "/" + framePath, 16);
+                frameDrawable.setMixAlpha(false);
                 frameDrawables.add(frameDrawable);
             }
 

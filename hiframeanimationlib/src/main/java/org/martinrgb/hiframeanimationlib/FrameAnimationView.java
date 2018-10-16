@@ -250,9 +250,12 @@ public class FrameAnimationView extends FrameSurfaceView {
     public void drawNext(Canvas canvas, int nextFrame, long start) {
         long frameDuration = 0;
         FrameDrawable frameDrawable = mFrameDrawables.get(nextFrame);
+
         if (null != frameDrawable) {
             frameDuration = frameDrawable.mDuration;
-            clearCanvas(canvas);
+            if(!frameDrawable.ismMiXAlpha()){
+                clearCanvas(canvas);
+            }
             frameDrawable.draw(canvas, start);
         }
         final long cost = SystemClock.uptimeMillis() - start;
